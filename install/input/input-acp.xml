@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createWhitesourceJob>false</createWhitesourceJob>
+
+    <createIntegrationTestHsqlJob>false</createIntegrationTestHsqlJob>
+    <createIntegrationTestOracleJob>false</createIntegrationTestOracleJob>
+    <createSonarJob>false</createSonarJob>
+    
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>ACP DM test cell</projectName>
+    <parentView>00 - SCDC/view/Workbranches</parentView>
+       
+    <module>
+        <moduleNumber>02</moduleNumber>
+        <templatePrefix>tmpl-st-wl-lin</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>ACP DM test cell</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>acpdmtestcell</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>acpdmtestcell</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>ACP DM test cell</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>WM 6 Previous Release</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almscdc.swisslog.com/repo/SWPD/Development/WM6/branches/workbranches/acp</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>k7rakiz@swisslog.com k7renah@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS_ADMIN%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>ACP DM test cell Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>WM 6 Prev Release System Test</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH_NAME%</key>
+            <value>AcpDmTestCell</value>
+        </entry>
+        <entry>
+            <key>%ST_BUILD_LOCATION%</key>
+            <value>D:/jenkins/workspace/</value>
+        </entry>
+        <entry>
+            <key>%JDK_VERSION%</key>
+            <value>Java 1.7</value>
+        </entry>
+
+    </parameterMap>
+</inputparameter>

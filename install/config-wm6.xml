@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config>
+    <templatesDirectory>install/templates-wm6</templatesDirectory>
+
+    <hostScheme>http</hostScheme>
+    <hostName>ci.swisslog.com</hostName>
+    <hostPort>80</hostPort>
+
+    <hostUsername>b7gloor</hostUsername>
+    <hostPassword>Tydolla$ign12</hostPassword>
+
+    <mainJobSuffix> - Build</mainJobSuffix>
+	<cleanupJobSuffix> - Cleanup</cleanupJobSuffix>
+    <integrationTestHsqlSuffix> - Integration-Tests (HSQL)</integrationTestHsqlSuffix>
+    <integrationTestOracleSuffix> - Integration-Tests (Oracle)</integrationTestOracleSuffix>
+    <integrationTestSqlSuffix> - Integration-Tests (Sql)</integrationTestSqlSuffix>
+    <sonarJobSuffix> - Static Code Analysis (Sonar)</sonarJobSuffix>
+
+    <stDataloaderJobSuffix> - 01-Dataloader</stDataloaderJobSuffix>
+    <stStartServerJobSuffix> - 02-Start Server</stStartServerJobSuffix>
+    <stDeployJobSuffix> - 03-Deploy Application</stDeployJobSuffix>
+    <stTestsJobSuffix> - 04-Run System Tests</stTestsJobSuffix>
+    <stUndeployJobSuffix> - 05-Undeploy Application</stUndeployJobSuffix>
+    <stStopServerJobSuffix> - 06-Stop Server</stStopServerJobSuffix>
+    <stMultijobSequenceJobSuffix> System Test Sequence</stMultijobSequenceJobSuffix>
+
+</config>

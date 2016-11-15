@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <displayName>%DISPLAY_NAME%</displayName>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>100</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.4.5">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>%SVN_URL%</remote>
+        <credentialsId>67dad9dd-e685-42d7-83dc-f0cfe829c045</credentialsId>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateWithRevertUpdater"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+  </scm>
+  <assignedNode>%SLAVE%</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>%JDK_NAME%</jdk>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H 12 * * 7</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Maven>
+      <targets>%MAIN_MVN_TARGETS%</targets>
+      <mavenName>(Default)</mavenName>
+      <properties>skipTests=true</properties>
+      <usePrivateRepository>true</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+    <hudson.tasks.Maven>
+      <targets>whitesource:update</targets>
+      <mavenName>(Default)</mavenName>
+      <properties>org.whitesource.product=WM Projects
+org.whitesource.productVersion=6
+org.whitesource.aggregateModules=true
+org.whitesource.aggregateProjectName=%DISPLAY_NAME%
+org.whitesource.requesterEmail=pedro.oliveira@swisslog.com
+org.whitesource.orgToken=350f5de2-1293-44f8-942c-9f53a127304c</properties>
+      <usePrivateRepository>true</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.12">
+      <recipients>yvan.perrenoud@swisslog.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.7"/>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
+      <locks>
+        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+          <name>%LOCK%</name>
+        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+      </locks>
+    </hudson.plugins.locksandlatches.LockWrapper>
+  </buildWrappers>
+</project>

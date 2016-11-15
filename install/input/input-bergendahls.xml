@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Bergendahls</projectName>
+    <parentView>06 - Nordics</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Bergendahls</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almse.swisslog.com/repo/Projects/Bergendahl/Hassleholm/SW%20Installation/trunk/05-Source%20Code/01-WM-S/wm6-bergendahls-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com kaj.fehlhaber@swisslog.com martin.davidsson@swisslog.com fredrik.carlsson@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Bergendahls Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>mvn clean install</value>
+            
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\bergendahls\jacoco-st.exec del D:\jacoco-st\bergendahls\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn install -f &quot;D:\jenkins\workspace\Bergendahls - Build\wm6-bergendahls-components\wm6-bergendahls-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin deploy --force &quot;D:\jenkins\workspace\Bergendahls - Build\wm6-bergendahls-war\target\wm6-bergendahls-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>asadmin stop-domain domain-bergendahls</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin undeploy wm6-bergendahls-war</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>SET BUILD_ID=dontKillMe
+asadmin start-domain domain-bergendahls</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

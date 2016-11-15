@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+   
+    <projectName>Weiling</projectName>
+    <parentView>05 - Germany</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Weiling</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almde.swisslog.com/repo/Projects/Weiling/Zentrallager_Coesfeld/trunk/05-Source Code/01-WM-S/wm6-weiling-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almde.swisslog.com/repo/Projects/Weiling/Zentrallager_Coesfeld/trunk/05-Source Code/01-WM-S/wm6-weiling-project/wm6-weiling-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>etienne.pache@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Weiling Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave02 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+            mvn clean install</value>
+            
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+            mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire -Dsonar.forceAnalysis=true -Dsonar.branch=Weiling -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\weiling\jacoco-st.exec del D:\jacoco-st\weiling\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn install -f &quot;D:\jenkins\workspace\Weiling - Build\wm6-weiling-components\wm6-weiling-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin deploy --force &quot;D:\jenkins\workspace\Weiling - Build\wm6-weiling-war\target\wm6-weiling-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>asadmin stop-domain domain-weiling</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin undeploy wm6-weiling-war</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>SET BUILD_ID=dontKillMe
+asadmin start-domain domain-weiling</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

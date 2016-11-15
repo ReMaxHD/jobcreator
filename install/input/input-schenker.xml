@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Schenker</projectName>
+    <parentView>Test1</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Schenker</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/DB Schenker/arlanda - carrypick/trunk/05-Sources/01-WM-S/wm6-schenker-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/DB Schenker/arlanda - carrypick/trunk/05-Sources/01-WM-S/wm6-schenker-project/wm6-schenker-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>bernhard.vongunten@swisslog.com rico.schiekel@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Schenker Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -Psonar,allWithSurefire -Dsonar.forceAnalysis=true -Dsonar.branch=Schenker -Dsonar.jacoco.itReportPath=D:\jacoco-st\sschenker\jacoco-st.exec -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-bosch-root:Schenker -m "bernhard.vongunten@swisslog.com"</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\schenker\jacoco-st.exec del D:\jacoco-st\schenker\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn install -f &quot;D:\jenkins\workspace\Schenker - Build\wm6-schenker-components\wm6-schenker-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+asadmin deploy --force &quot;D:\jenkins\workspace\Schenker - Build\wm6-schenker-war\target\wm6-schenker-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>asadmin stop-domain domain-schenker</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin undeploy wm6-schenker-war</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>SET BUILD_ID=dontKillMe
+set JAVA_HOME=%JAVA7_HOME%
+asadmin start-domain domain-schenker</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

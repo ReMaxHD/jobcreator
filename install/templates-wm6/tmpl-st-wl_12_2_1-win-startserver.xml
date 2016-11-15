@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+<actions />
+    <description></description>
+    <displayName>%DISPLAY_NAME%</displayName>
+    <logRotator class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>100</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+    </logRotator>
+    <keepDependencies>false</keepDependencies>
+    <properties />
+    <scm class="hudson.scm.NullSCM" />
+    <assignedNode>%SLAVE%</assignedNode>
+    <canRoam>false</canRoam>
+    <disabled>false</disabled>
+    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+    <jdk>%JDK_VERSION%</jdk>
+    <triggers />
+    <concurrentBuild>false</concurrentBuild>
+    <builders>
+    <hudson.tasks.BatchFile>
+<command>REM https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+REM avoid having jenkins kill server process
+set BUILD_ID=dontKillMe
+REM %MW_HOME%/wlserver/server/bin/setWLSEnv.cmd
+set JAVA_OPTIONS=%JAVA_OPTIONS%
+-javaagent:D:/m2repo/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/Weblogic1221/jacoco-st.exec
+REM prepare weblogic-maven-plugin
+cd %MW_HOME%\oracle_common\plugins\maven\com\oracle\maven\oracle-maven-sync\12.2.1
+call mvn install:install-file -DpomFile=oracle-maven-sync-12.2.1.pom -Dfile=oracle-maven-sync-12.2.1.jar
+call mvn com.oracle.maven:oracle-maven-sync:push -DoracleHome=%ORACLE_HOME%
+REM start server
+call mvn com.oracle.weblogic:weblogic-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/%DOMAIN_NAME% -DmiddlewareHome=%MW_HOME%
+</command>
+</hudson.tasks.BatchFile>
+</builders>
+<publishers>
+<hudson.tasks.Mailer plugin="mailer@1.12">
+<recipients>%MAIL_RECIPIENTS_ADMIN%</recipients>
+<dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+<sendToIndividuals>false</sendToIndividuals>
+</hudson.tasks.Mailer>
+<hudson.plugins.claim.ClaimPublisher plugin="claim@2.7" />
+</publishers>
+<buildWrappers />
+</project>

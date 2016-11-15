@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+
+    <createIntegrationTestHsqlJob>true</createIntegrationTestHsqlJob>
+    <createIntegrationTestOracleJob>true</createIntegrationTestOracleJob>
+    <createIntegrationTestSqlJob>false</createIntegrationTestSqlJob>
+    <createSonarJob>true</createSonarJob>
+    
+    <createSystemTestJobs>true</createSystemTestJobs>
+	<createCleanupJob>true</createCleanupJob>
+	<!--Project Display Name (whitespaces between dash and words)-->
+    <projectName>WM6 - Wildfly</projectName>
+	<!--Parentview (Tabname)-->
+    <parentView>00 - SCDC/view/Workbranches</parentView>
+    
+	<module>
+        <moduleNumber>05</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>WHP</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>whp</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>WhpDevelopmentConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>whp</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+	
+    <parameterMap>
+		<!--Like display name but without whitespaces only "_" -->
+        <entry>
+		    <key>%LIST_NAME%</key>
+            <value>WM6_-_Wildfly</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>SCHR7S-SDC044</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almscdc.swisslog.com/repo/SWPD/Development/WM6/branches/workbranches/wildfly_10/wildfly_10_merge_09_09_16</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>Kasimir.bobst@swisslog.com raphael.gloor@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS_ADMIN%</key>
+            <value>rafael.romeli@swisslog.com patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com raphael.gloor@swisslog.com kasimir.bobst@swisslog.com</value>
+        </entry>
+        <!--Must be added afterwards under http://ci.swisslog.com/jenkins/configure -->
+        <entry>
+            <key>%LOCK%</key>
+            <value>WM6 Wildfly</value>
+        </entry>
+        <!--Most likely already exists should be servername check http://ci.swisslog.com/jenkins/configure -->
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>SCHR7S-SDC044 Weblogic</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH_NAME%</key>
+            <value>Wm6Wildfly</value>
+        </entry>
+        <!--D:/jenkins/workspace/%LIST_NAME%_-_01_System_Test_Build-->
+        <entry>
+            <key>%ST_BUILD_LOCATION%</key>
+            <value>D:/jenkins/workspace/WM6_-_Wildfly_-_01_System_Test_Build</value>
+        </entry>
+        <entry>
+            <key>%JDK_VERSION%</key>
+            <value>Java 1.8 Win</value>
+        </entry>
+        <entry>
+            <key>%M2_REPO%</key>
+            <value>C:\Users\scdcadmin\.m2\repository</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_DIR%</key>
+            <value>D:/jacoco-st/</value>
+        </entry>
+
+    </parameterMap>
+</inputparameter>

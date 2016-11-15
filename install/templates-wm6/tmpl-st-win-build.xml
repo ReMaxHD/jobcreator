@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This build compiles WM 6 Components before the System Tests are started&lt;br&gt;&lt;br&gt;&#xd;
+To speed up, Unit Tests are skipped during build, they have been executed during svn triggered build.</description>
+  <displayName>%DISPLAY_NAME%</displayName>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>100</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.2">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>%SVN_URL%</remote>
+        <credentialsId></credentialsId>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+  </scm>
+  <assignedNode>%SLAVE%</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>%JDK_VERSION%</jdk>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <builders>
+    <hudson.tasks.Shell>
+      <command>[ -f /home/rSLOG/jacoco-st/%LIST_NAME%/jacoco-st.exec ] && rm /home/rSLOG/jacoco-st/%LIST_NAME%/jacoco-st.exec || echo "Jacoco file does not yet exist"</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Maven>
+      <targets>clean install</targets>
+      <mavenName>(Default)</mavenName>
+      <properties>skipTests=true</properties>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.12">
+      <recipients>%MAIL_RECIPIENTS_ADMIN%</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>true</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.7"/>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
+      <locks>
+        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+          <name>%LOCK%</name>
+        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+      </locks>
+    </hudson.plugins.locksandlatches.LockWrapper>
+  </buildWrappers>
+</project>

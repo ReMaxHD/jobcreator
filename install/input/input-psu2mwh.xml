@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<inputparameter>
+    <abortOnError>false</abortOnError>
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createSystemTestJobs>false</createSystemTestJobs>
+    <createWhitesourceJob>true</createWhitesourceJob>
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>PSU2 Manual Warehouse</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>vincent.burri@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave01</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%JDK%</key>
+            <value>1.7</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>PSU2ManualWarehouse</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Swisslog/nidau_psu2%20-%20manual%20wh/trunk/SR%20Installation/05-Sources/01-WM6/wm6-psu2manualwh/</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>PSU2 Manual Warehouse Build</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>org.codehaus.mojo:sonar-maven-plugin:2.6:sonar -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_PROPERTIES%</key>
+            <value>sonar.forceAnalysis=true
+sonar.branch=Manor
+sonar.host.url=http://172.31.49.12:8088/sonar
+sonar.jdbc.url=jdbc:postgresql://172.31.49.12:5432/sonar
+sonar.jdbc.driver=org.postgresql.Driver
+sonar.jacoco.itReportPath=D:/jacoco-st/psu2manualwarehouse/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-psu2manualwh-root:PSU2ManualWarehouse -m &quot;vincent.burri@swisslog.com&quot;</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>PSU2 Manual Warehouse</value>
+        </entry>
+    </parameterMap>
+    <parentView>01 - Switzerland</parentView>
+    <projectName>PSU2 Manual Warehouse</projectName>
+</inputparameter>

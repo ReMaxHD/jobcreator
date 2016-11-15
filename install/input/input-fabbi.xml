@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createWhitesourceJob>true</createWhitesourceJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+
+    <projectName>Fabbi</projectName>
+    <parentView>02 - Italy</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Fabbi</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Fabbi</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Fabbi/fabbi%20-%20imola%20-%20autostore/trunk/SR-Installation/05-Sources/01-WM6/wm6-fabbi-project/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>marco.iezzi@swisslog.com daniele.pirro@swisslog.com leonardo.reale@swisslog.com monica.messori@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com raphael.gloor@swisslog.com kasimir.bobst@swisslog.com rafael.romeli@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Fabbi - Build</value>
+        </entry>
+        <entry>
+            <key>%JDK_NAME%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_FOLDER%</key>
+            <value>fabbi</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>FABBI</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>fabbi</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

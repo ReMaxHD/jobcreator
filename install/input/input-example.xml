@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createWhitesourceJob>true</createWhitesourceJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+
+    <projectName>Alnatura - Lorsch - Example</projectName>
+    <parentView>Test Jobs</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Alnatura - Lorsch - Example</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Alnatura - Lorsch - Example</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Alnatura/lorsch%20deutschland%20-%20kvl/trunk/SR%20Installation/05-Sources/01-WM6/wm6-alnatura-project</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>marc.lenicka@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com raphael.gloor@swisslog.com kasimir.bobst@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Alnatura - Lorsch example Build</value>
+        </entry>
+        <entry>
+            <key>%JDK_NAME%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_FOLDER%</key>
+            <value>alnaturalorschexample</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>alnaturaLORSCHExample</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>alnatura</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

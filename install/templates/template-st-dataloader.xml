@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <displayName>%DISPLAY_NAME%</displayName>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>100</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>%SLAVE%</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>%JDK_NAME%</jdk>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Maven>
+      <targets>install -PloadData</targets>
+      <mavenName>(Default)</mavenName>
+      <pom>D:\jenkins\workspace\%PROJECT_NAME_WITHOUT_SPACES%_-_01-System_Test_Build\wm6-%MODULE_NAME_LOWERCASE%-components\wm6-%MODULE_NAME_LOWERCASE%-main\pom.xml</pom>
+      <properties>com.swisslog.environment=ci_system_test
+com.swisslog.dataloader.configuration=%DATALOADER_CONFIGURATION%</properties>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.12">
+      <recipients>%MAIL_RECIPIENTS% %ADMIN_MAIL_RECIPIENTS%</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.7"/>
+  </publishers>
+  <buildWrappers/>
+</project>

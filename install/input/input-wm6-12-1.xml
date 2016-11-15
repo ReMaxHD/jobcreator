@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+
+    <createIntegrationTestHsqlJob>true</createIntegrationTestHsqlJob>
+    <createIntegrationTestOracleJob>true</createIntegrationTestOracleJob>
+    <createSonarJob>true</createSonarJob>
+    
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>WM 6.12.1</projectName>
+    <parentView>00 - SCDC</parentView>
+       
+    <module>
+        <moduleNumber>02</moduleNumber>
+        <templatePrefix>tmpl-st-gf</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Faxe</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>faxe</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-faxe6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>03</moduleNumber>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Techlab</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>techlab</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-techlab6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>04</moduleNumber>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Autostore</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>autostorejumpstart</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-autostore6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>05</moduleNumber>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>WHP</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>whp</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-whp6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>06</moduleNumber>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>TrainingWHP</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>trainingwhp</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-trainingwhp6.12.1</value>
+            </entry>
+            <entry>
+                <key>%DATALOADER_POM_PATH%</key>
+                <value>\wm6-trainingwhp-project\wm6-trainingwhp-exercise\pom.xml</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>07</moduleNumber>
+        <templateConfig>-dataloader-spec -configureplant -startserver -deployapp -run-st -undeployapp -stopserver</templateConfig>
+        <moduleSequenceTemplate>tmpl-st-sequence-7phases</moduleSequenceTemplate>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Cranebox</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>cranebox</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-cranebox6.12.1</value>
+            </entry>
+            <entry>
+                <key>%DATALOADER_POM_PATH%</key>
+                <value>\wm6-cranebox-project\wm6-cranebox-dataloader\pom.xml</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>08</moduleNumber>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>CarryPick</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>carrypickjumpstart</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-carrypick6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>09</moduleNumber>
+        <moduleConfigJcomEar>true</moduleConfigJcomEar>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>SmartCarrier</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>smartcarrierjumpstart</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-smartcarrier6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <module>
+        <moduleNumber>10</moduleNumber>
+        <moduleConfigJcomEar>true</moduleConfigJcomEar>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>ServusLab</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>servuslab</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>domain-servuslab6.12.1</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>WM 6.12.1</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>WM 6 Previous Release</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almscdc.swisslog.com/repo/SWPD/Development/WM6/branches/6.12.1.x</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>eduard.schimpf@swisslog.com hooiyeow.ching@swisslog.com lena.kemmer@swisslog.com lorenzo.demicheli@swisslog.com nuno.godinhodematos@swisslog.com patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com thomas.giger@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS_ADMIN%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>WM 6.12.1 Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>WM 6 Previous Release</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH_NAME%</key>
+            <value>WM6.12.1</value>
+        </entry>
+        <entry>
+            <key>%ST_BUILD_LOCATION%</key>
+            <value>D:\jenkins\workspace\WM 6.12.1 - 01 System Test Build</value>
+        </entry>
+
+    </parameterMap>
+</inputparameter>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Blum</projectName>
+    <parentView>01 - Switzerland</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Blum</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave01</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almch.swisslog.com/repo/Projects/Blum/P410388_BlumNZ/prj/trunk/05-Sources/01-WM6/wm6-blum-project</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almch.swisslog.com/repo/Projects/Blum/P410388_BlumNZ/prj/trunk/05-Sources/01-WM6/wm6-blum-project/wm6-blum-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>igor.kovacevic@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Blum Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave01 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>mvn clean install</value>
+            
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire -Dsonar.forceAnalysis=true -Dsonar.branch=Blum -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>igor.kovacevic@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\blum\jacoco-st.exec del D:\jacoco-st\blum\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn install -f &quot;D:\jenkins\workspace\Blum - Build\wm6-blum-components\wm6-blum-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin deploy --force &quot;D:\jenkins\workspace\Blum - Build\wm6-blum-war\target\wm6-blum-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>asadmin stop-domain domain-blum</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin undeploy wm6-blum-war</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>SET BUILD_ID=dontKillMe
+asadmin start-domain domain-blum</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

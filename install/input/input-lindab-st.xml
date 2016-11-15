@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Lindab</projectName>
+    <parentView>06 - Nordics</parentView>
+    <templatePrefix>tmpl-st-wl</templatePrefix>
+       
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Lindab</value>
+        </entry>
+        <entry>
+            <key>%JDK_NAME%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Lindab</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>lindab</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Lindab AB/grevie - new dc/trunk/SR Installation/05-Sources/01-WM6/wm6-lindab-project</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>daniel.andersson@swisslog.com martin.davidsson@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com raphael.gloor@swisslog.com kasimir.bobst@swisslog.com rafael.romeli@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Lindab - Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test Weblogic</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>Lindab</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_FOLDER%</key>
+            <value>lindab</value>
+        </entry>
+        <entry>
+            <key>%SCREENSHOTS_DIR%</key>
+            <value>lindab</value>
+        </entry>
+        <entry>        
+            <key>%DATALOADER_CONFIGURATION%</key>
+            <value>LindabDevelopmentConfiguration.xml</value>
+        </entry>
+        <entry>
+            <key>%DOMAIN_NAME%</key>
+            <value>lindab</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

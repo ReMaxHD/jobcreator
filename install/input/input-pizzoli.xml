@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createWhitesourceJob>true</createWhitesourceJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+
+    <projectName>Pizzoli</projectName>
+    <parentView>02 - Italy</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Pizzoli</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Pizzoli</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almde.swisslog.com/repo/Projects/Pizzoli/Pizzoli/prj/trunk/05-Sources/01-WM-S/wm6-pizzoli-project</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>monica.messori@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com marc.lenicka@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Pizzoli Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%JDK%</key>
+            <value>1.7</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>clean install -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%JACOCO-ST_PATH%</key>
+            <value>D:/jacoco/pizzoli/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>Pizzoli</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-pizzoli-root:Pizzoli -m "monica.messori@swisslog.com"</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\pizzoli\jacoco-st.exec del D:\jacoco-st\pizzoli\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_TARGETS%</key>
+            <value>clean install -f &quot;D:\jenkins\workspace\Pizzoli_-_01_System_Test_Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test
+            </value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>REM https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+REM avoid having jenkins kill glassfish
+set BUILD_ID=dontKillMe
+
+set JAVA_OPTIONS=%JAVA_OPTIONS% -javaagent:C:/Users/scdcadmin/.m2/repository/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/pizzoli/jacoco-st.exec
+
+start %MW_HOME%/wlserver/server/bin/setWLSEnv.cmd
+cd %MW_HOME%/wlserver/server/lib/
+call mvn install
+call mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml
+
+REM start server
+call mvn com.oracle.weblogic:wls-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/pizzoli -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM deploy app
+mvn com.oracle.weblogic:wls-maven-plugin:deploy -Dsource=D:/jenkins/workspace/Pizzoli_-_01_System_Test_Build/wm6-pizzoli-war/target/wm6-pizzoli-war.war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+            <value>clean install -Pweblogicsystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM undeploy app
+mvn com.oracle.weblogic:wls-maven-plugin:undeploy -Dname=wm6-pizzoli-war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM stop server
+mvn com.oracle.weblogic:wls-maven-plugin:stop-server -DdomainHome=%MW_HOME%/user_projects/domains/pizzoli -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

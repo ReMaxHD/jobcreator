@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createWhitesourceJob>true</createWhitesourceJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+
+    <projectName>Condition - Monitoring - Template</projectName>
+    <parentView>01 - Switzerland</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Condition - Monitoring - Template</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Condition - Monitoring - Template</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>slave01</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/conditionmonitoring/template/trunk/05-Sources/01-WM6/cmtemplate/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>satheeskumar.uthayakumar@swisslog.com Christoph.bucher@swisslog.com pierre.enclos@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com raphael.gloor@swisslog.com kasimir.bobst@swisslog.com rafael.romeli@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Condition Monitoring Template - Build</value>
+        </entry>
+        <entry>
+            <key>%JDK_NAME%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_FOLDER%</key>
+            <value>conditionmonitoringtemplate</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>ConditionMonitoringTemplate</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>conditionmonitoringtemplate</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

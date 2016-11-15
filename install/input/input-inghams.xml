@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Inghams</projectName>
+    <parentView>04 - Australia</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Inghams</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Inghams</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almaus.swisslog.com/repo/Project/Inghams/PF3_Inghams_Cleveland/SW Installation/trunk/05-Source Code/01-WM6/wm6-inghams-project</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almaus.swisslog.com/repo/Project/Inghams/PF3_Inghams_Cleveland/SW Installation/trunk/05-Source Code/01-WM6/wm6-inghams-project/wm6-inghams-systemtest/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>roger.matter@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Inghams Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave02 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -Psonar,allWithSurefire -f &quot;D:\jenkins\workspace\Schenker - Build\pom.xml&quot; -Dsonar.forceAnalysis=true -Dsonar.branch=Schenker -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\inghams\jacoco-st.exec del D:\jacoco-st\inghams\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install -f &quot;D:\jenkins\workspace\Inghams - Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+asadmin start-domain domain-inghams</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+asadmin deploy --force &quot;D:\jenkins\workspace\Inghams - Build\wm6-inghams-war\target\wm6-inghams-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+asadmin undeploy wm6-inghams-war</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+asadmin stop-domain domain-inghams</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

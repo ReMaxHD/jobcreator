@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>PAS PalletShuttle</projectName>
+    <parentView>03 - Malaysia</parentView>
+    <templatePrefix>tmpl-st-wl</templatePrefix>
+       
+    <parameterMap>
+        <entry>
+            <key>%JDK%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>PAS PalletShuttle</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>pas</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/ProductDevelopment/Software/Projects/PAS_PalletShuttle/trunk/SR Installation/05-Sources/01-WM6/pas/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://librarymanagement.swisslog.com/repo/ProductDevelopment/Software/Projects/PAS_PalletShuttle/trunk/SR Installation/05-Sources/01-WM6/pas/wm6-pas-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>gan.soonkiat@swisslog.com pengchew.loh@swisslog.com kokseong.mong@swisslog.com narasimha.swamy@swisslog.com luis.wong@swisslog.com leo.chin@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>marc.lenicka@swisslog.com patrik.jetzer@swisslog.com pedro-oliveira@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>PAS PalletShuttle Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave02 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>PAS_PalletShuttle</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>clean install -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%JACOCO-ST_PATH%</key>
+            <value>D:/jacoco/PAS_PalletShuttle/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>gan.soonkiat@swisslog.com pengchew.loh@swisslog.com kokseong.mong@swisslog.com narasimha.swamy@swisslog.com luis.wong@swisslog.com leo.chin@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\PAS_PalletShuttle\jacoco-st.exec del D:\jacoco-st\PAS_PalletShuttle\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_TARGETS%</key>
+            <value>install -f &quot;D:\jenkins\workspace\PAS PalletShuttle - 01-System Test Build\wm6-pas-components\wm6-pas-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DOMAIN_NAME%</key>
+            <value>pas</value>
+        </entry>
+        <entry>
+            <key>%ARTIFACT_LOCATION%</key>
+            <value>D:/jenkins/workspace/PAS PalletShuttle - 01-System Test Build/wm6-pas-war/target/wm6-pas-war.war</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+            <value>clean install -Psystemtest</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

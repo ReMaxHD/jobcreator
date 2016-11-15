@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+<!-- NOT YET IN USE -->
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Schenker</projectName>
+    <parentView>Test1</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Schenker</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/DB Schenker/arlanda - carrypick/trunk/05-Sources/01-WM-S/wm6-schenker-project/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>bernhard.vongunten@swisslog.com rico.schiekel@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Schenker Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -Psonar,allWithSurefire -f &quot;D:\jenkins\workspace\Schenker - Build\pom.xml&quot; -Dsonar.forceAnalysis=true -Dsonar.branch=Schenker -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\schenker\jacoco-st.exec del D:\jacoco-st\schenker\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn clean install -f &quot;D:\jenkins\workspace\Schenker - Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin deploy --force &quot;D:\jenkins\workspace\Schenker - Build\wm6-schenker-war\target\wm6-schenker-war.war&quot;</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>asadmin stop-domain domain-schenker</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>asadmin undeploy wm6-schenker-war</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>SET BUILD_ID=dontKillMe
+asadmin start-domain domain-schenker</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

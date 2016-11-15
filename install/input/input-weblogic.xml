@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+<!-- NOT YET IN USE -->
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+    <createDatabase>false</createDatabase>
+   
+    <projectName>Rusta</projectName>
+    <parentView>06 - Nordics</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Rusta</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Rusta/Norrkoping%20-%20PalletHBW/trunk/SW%20Installation/</value>
+        </entry>
+        <entry>
+            <key>SVN_URL_ST</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Rusta/Norrkoping%20-%20PalletHBW/trunk/SW%20Installation/wm6-rusta-systemtests</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>daniel.ekdahl@swisslog.com martin.davidsson@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Rusta Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire -f &quot;D:\jenkins\workspace\Rusta - Build\pom.xml&quot; -Dsonar.forceAnalysis=true -Dsonar.branch=Rusta -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver -Dsonar.jacoco.itReportPath=D:\jacoco-st\rusta\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\rusta\jacoco-st.exec del D:\jacoco-st\rusta\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn clean install -f &quot;D:\jenkins\workspace\Rusta - Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+# deploy app
+mvn com.oracle.weblogic:wls-maven-plugin:deploy -Dsource=D:/jenkins/workspace/Rusta - Build/wm6-rusta-war/target/wm6-rusta-war.war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%
+            </value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+# stop server
+mvn com.oracle.weblogic:wls-maven-plugin:stop-server -DdomainHome=%MW_HOME%/user_projects/domains/rusta -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%
+            </value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>clean install -Pweblogicsystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+# undeploy app
+mvn com.oracle.weblogic:wls-maven-plugin:undeploy -Dname=wm6-rusta-war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value># https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+# avoid having jenkins kill glassfish
+export BUILD_ID=dontKillMe
+
+set JAVA_OPTIONS=%JAVA_OPTIONS% -javaagent:C:/Users/scdcadmin/.m2/repository/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/rusta/jacoco-st.exec
+
+start %MW_HOME%/wlserver/server/bin/setWLSEnv.bat
+cd %MW_HOME%/wlserver/server/lib/
+mvn install
+mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml
+
+# start server
+mvn com.oracle.weblogic:wls-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/rusta -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%CREATE_DOMAIN_COMMAND%</key>
+            <value>if exist %MW_HOME%/user_projects/domains/rusta del /S /Q %MW_HOME%/user_projects/domains/rusta
+D:\jenkins\workspace\Rusta - Build\install\WebLogic\Createdomain.bat</value>
+        </entry>
+        <!-- MSSQL Server -->
+        <entry>
+            <key>%DATABASE_TYPE%</key>
+            <value>MSSQL</value>
+        </entry>
+        <entry>
+            <key>%DATABASE_NAME%</key>
+            <value>RUSTADB,RUSTADWHDB</value>
+        </entry>
+        <entry>
+            <key>%DATABASE_USER%</key>
+            <value>WM6/WM6,DWH/DWH</value>
+        </entry>
+        <!-- Oracle Server 
+        <entry>
+            <key>%DATABASE_USER%</key>
+            <value>rusta/rusta,rustadwh,rustadwh</value>
+        </entry> 
+        -->
+    </parameterMap>
+</inputparameter>

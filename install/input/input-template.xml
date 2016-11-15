@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+   
+    <projectName>%PROJECT_NAME_VALUE%</projectName>
+    <parentView>%PARENT_VIEW_VALUE%</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>%PROJECT_NAME_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>%SLAVE_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>%SVN_URL_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>%SVN_URL_VALUE%/wm6-%PROJECT_ABBREVATION_VALUE%-systemtest/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>%MAIL_RECIPIENTS_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>%LOCK_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>%PROJECT_NAME_VALUE% System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+mvn clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire -Dsonar.forceAnalysis=true -Dsonar.branch=%PROJECT_NAME_WITHOUT_SPACES_VALUE% -Dsonar.jacoco.itReportPath=D:/jacoco-st/%PROJECT_ABBREVATION_VALUE%/jacoco-st.exec -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>%MAIL_RECIPIENTS_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:/jacoco-st/%PROJECT_ABBREVATION_VALUE%/jacoco-st.exec del D:/jacoco-st/%PROJECT_ABBREVATION_VALUE%/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+mvn install -f "D:/jenkins/workspace/%PROJECT_NAME_VALUE% - Build\wm6-%PROJECT_ABBREVATION_VALUE%-components\wm6-%PROJECT_ABBREVATION_VALUE%-main\pom.xml" -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+asadmin start-domain domain-%PROJECT_ABBREVATION_VALUE%</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+asadmin deploy --force "D:/jenkins/workspace/%PROJECT_ABBREVATION% - Build/wm6-%PROJECT_ABBREVATION%-project/wm6-%PROJECT_ABBREVATION%-war/target/wm6-%PROJECT_ABBREVATION%-war.war"</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+mvn clean install -Psystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+asadmin undeploy wm6-%PROJECT_ABBREVATION%-war</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>%JAVA7_VALUE%
+asadmin stop-domain domain-%PROJECT_ABBREVATION%</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

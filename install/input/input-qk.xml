@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+   
+    <projectName>Quality King</projectName>
+    <parentView>09 - North America</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Quality King</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Quality King</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almusa.swisslog.com/repo/Project/QualityKing/WD6900/trunk/06-Source%20Code/wm6-qk-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almusa.swisslog.com/repo/Project/QualityKing/WD6900/trunk/06-Source%20Code/wm6-qk-project/wm6-qk-systemtest/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>amber.taylor@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Quality King Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>mvn clean install -Phost</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>>mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -Psonar,allWithSurefire -f &quot;D:\jenkins\workspace\Quality King - Build\pom.xml&quot; -Dsonar.forceAnalysis=true -Dsonar.branch=QualityKing -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\qk\jacoco-st.exec del D:\jacoco-st\qk\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>mvn clean install -f &quot;D:\jenkins\workspace\Quality King - Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value></value>
+        </entry>
+    </parameterMap>
+</inputparameter>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Medline</projectName>
+    <parentView>09 - North America</parentView>
+       
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Medline</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave03</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almusa.swisslog.com/repo/Project/Medline/WD6450/trunk/06-Source%20Code/wm6-medline-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almusa.swisslog.com/repo/Project/Medline/WD6450/trunk/06-Source%20Code/wm6-medline-project/wm6-slna-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value></value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Medline Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave03 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire -Dsonar.forceAnalysis=true -Dsonar.branch=Medline -Dsonar.host.url=http://SCHR7S-SDC001.swisslog.net:8088/sonar -Dsonar.jdbc.url=jdbc:postgresql://SCHR7S-SDC001.swisslog.net:5432/sonar -Dsonar.jdbc.driver=org.postgresql.Driver</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-slna-root:Medline -m "amber.taylor@swisslog.com"</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\medline\jacoco-st.exec del D:\jacoco-st\medline\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install -f "D:\jenkins\workspace\Medline - Build\pom.xml" -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>REM https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+REM avoid having jenkins kill weblogic
+SET BUILD_ID=dontKillMe
+set JAVA_HOME=%JAVA7_HOME%
+
+set JAVA_OPTIONS=%JAVA_OPTIONS% -javaagent:C:/Users/scdcadmin/.m2/repository/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/medline/jacoco-st.exec
+
+start %MW_HOME%/wlserver/server/bin/setWLSEnv.cmd
+
+cd %MW_HOME%/wlserver/server/lib/
+
+call mvn install
+call mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml
+
+rem start server
+call mvn com.oracle.weblogic:wls-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/medline -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+cd %MW_HOME%/wlserver/server/lib/
+
+rem deploy app
+mvn com.oracle.weblogic:wls-maven-plugin:deploy -Dsource="D:\jenkins\workspace\Medline - Build\wm6-slna-war/target/wm6-slna-war.war" -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_COMMAND%</key>
+            <value>set JAVA_HOME=%JAVA7_HOME%
+mvn clean install -Pweblogicsystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+rem undeploy app
+mvn com.oracle.weblogic:wls-maven-plugin:undeploy -Dname=wm6-slna-war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+# stop server
+mvn com.oracle.weblogic:wls-maven-plugin:stop-server -DdomainHome=%MW_HOME%/user_projects/domains/slna -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

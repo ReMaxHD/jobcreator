@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Elektro Material - Genf and Basel</projectName>
+    <parentView>01 - Switzerland</parentView>
+    <templatePrefix>tmpl-st-wl</templatePrefix>
+       
+    <parameterMap>
+        <entry>
+            <key>%JDK%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Elektro Material - Genf and Basel</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>emb</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave01</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Elektro%20Material/genf%20and%20basel%20-%20em%202/trunk/SR%20Installation/05-Sources/01-WM6/14/wm6-emb-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Elektro%20Material/genf%20and%20basel%20-%20em%202/trunk/SR%20Installation/05-Sources/01-WM6/14/wm6-emb-project/wm6-emb-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>Etienne.Pache@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>marc.lenicka@swisslog.com patrik.jetzer@swisslog.com pedro-oliveira@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Elektro Material - Genf and Basel - Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave01 System Test</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>ElektroMaterialGenfAndBasel</value>
+        </entry>
+        <entry>
+            <key>%JACOCO-ST_PATH%</key>
+            <value>D:/jacoco/elektromaterial2/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\elektromaterial2\jacoco-st.exec del D:\jacoco-st\elektromaterial2\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_TARGETS%</key>
+            <value>install -f &quot;D:\jenkins\workspace\Elektro_Material_-_Genf_and_Basel_-_01-System_Test_Build\wm6-emb-components\wm6-emb-main\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DOMAIN_NAME%</key>
+            <value>elektromaterial2</value>
+        </entry>
+        <entry>
+            <key>%ARTIFACT_LOCATION%</key>
+            <value>D:/jenkins/workspace/Elektro_Material_-_Genf_and_Basel_-_01-System_Test_Build/wm6-emb-war/target/wm6-emb-war.war</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+            <value>clean install -Pweblogicsystemtests</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

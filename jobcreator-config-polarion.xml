@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config>
+    <templatesDirectory>D:\Swisslog\Jenkins_Jobcreator\templates</templatesDirectory>
+
+    <hostScheme>http</hostScheme>
+    <hostName>172.31.49.12</hostName>
+    <hostPort>80</hostPort>
+
+    <hostUsername>CI</hostUsername>
+    <hostPassword>Password@1</hostPassword>
+
+    <mainJobSuffix> - Build</mainJobSuffix>
+    <sonarJobSuffix> - Static Code Analysis (Sonar)</sonarJobSuffix>
+    <whitesourceJobSuffix> - Whitesource</whitesourceJobSuffix>
+
+	<stBuildJobSuffix> - 01-System Test Build</stBuildJobSuffix>
+    <stDataloaderJobSuffix> - 02-Dataloader</stDataloaderJobSuffix>
+    <stStartServerJobSuffix> - 03-Start Server</stStartServerJobSuffix>
+    <stDeployJobSuffix> - 04-Deploy Application</stDeployJobSuffix>
+    <stTestsJobSuffix> - 05-Run System Tests</stTestsJobSuffix>
+    <stUndeployJobSuffix> - 06-Undeploy Application</stUndeployJobSuffix>
+    <stStopServerJobSuffix> - 07-Stop Server</stStopServerJobSuffix>
+    <stMultijobSequenceJobSuffix> System Test Sequence</stMultijobSequenceJobSuffix>
+
+    <jdkInstallation>
+        <name>Java 1.6 Win</name>
+        <version>1.6</version>
+        <slave>Slave01</slave>
+        <slave>Slave02</slave>
+        <slave>Slave03</slave>
+    </jdkInstallation>
+
+    <jdkInstallation>
+        <name>Java 1.7 Win</name>
+        <version>1.7</version>
+        <slave>Slave01</slave>
+        <slave>Slave02</slave>
+        <slave>Slave03</slave>
+    </jdkInstallation>
+
+    <jdkInstallation>
+        <name>Java 1.7 Lin</name>
+        <version>1.7</version>
+        <slave>WM 6 Trunk - Linux</slave>
+    </jdkInstallation>
+
+    <jdkInstallation>
+        <name>Java 1.8 Win</name>
+        <version>1.8</version>
+        <slave>Slave01</slave>
+        <slave>Slave02</slave>
+        <slave>Slave03</slave>
+    </jdkInstallation>
+
+</config>

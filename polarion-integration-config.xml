@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<polarion-integration-config>
+    <svnlookExe>D:\Polarion\bundled\svn\bin\svnlook.exe</svnlookExe>
+    <jobcreatorConfig>D:\Swisslog\Jenkins_Jobcreator\jobcreator-config-polarion.xml</jobcreatorConfig>
+    <inputXmlLocation>D:\Swisslog\Jenkins_Jobcreator\input</inputXmlLocation>
+    
+    <adminMailRecipients>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com marc.lenicka@swisslog.com</adminMailRecipients>
+    <mainMvnTargets>clean install</mainMvnTargets>
+    <lockSufix> Build</lockSufix>
+    <dataLoaderConfigurationSufix>-DevelopmentConfiguration.xml</dataLoaderConfigurationSufix>
+    
+    <!-- System tests locks -->
+    <stLock>
+        <name>Slave01 System Test</name>
+        <slave>Slave01</slave>
+    </stLock>
+    
+    <stLock>
+        <name>Slave02 System Test Weblogic</name>
+        <slave>Slave02</slave>
+    </stLock>
+    
+    <stLock>
+        <name>Slave03 System Test</name>
+        <slave>Slave03</slave>
+    </stLock>
+
+    <!-- Countries -->
+    <country>
+        <name>ch</name>
+        <slave>Slave01</slave>
+        <parentView>01 - Switzerland</parentView>
+    </country>
+    
+    <country>
+        <name>ce</name>
+        <slave>Slave01</slave>
+        <parentView>01 - Switzerland</parentView>
+    </country>
+
+    <country>
+        <name>ita</name>
+        <slave>Slave02</slave>
+        <parentView>02 - Italy</parentView>
+    </country>
+ 
+    <country>
+        <name>sea</name>
+        <slave>Slave02</slave>
+        <parentView>03 - Malaysia</parentView>
+    </country>
+    
+    <country>
+        <name>ea</name>
+        <slave>Slave02</slave>
+        <parentView>03 - Malaysia</parentView>
+    </country>
+    
+    <country>
+        <name>au</name>
+        <slave>Slave02</slave>
+        <parentView>04 - Australia</parentView>
+    </country>
+    
+    <country>
+        <name>ge</name>
+        <slave>Slave02</slave>
+        <parentView>05 - Germany</parentView>
+    </country>
+    
+    <country>
+        <name>se</name>
+        <slave>Slave03</slave>
+        <parentView>06 - Nordics</parentView>
+    </country>
+    
+    <country>
+        <name>uk</name>
+        <slave>Slave03</slave>
+        <parentView>07 - UK</parentView>
+    </country>
+    
+    <country>
+        <name>nl</name>
+        <slave>Slave03</slave>
+        <parentView>08 - Benelux</parentView>
+    </country>
+    
+    <country>
+        <name>na</name>
+        <slave>Slave03</slave>
+        <parentView>09 - North America</parentView>
+    </country>
+
+    <!-- WM 6 Versions -->
+    <wm6Version>
+        <name>WM6.14.x</name>
+        <jdk>1.7</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.13.x</name>
+        <jdk>1.7</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.12.x</name>
+        <jdk>1.7</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.11.x</name>
+        <jdk>1.7</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.10.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.9.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.8.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.7.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.6.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+    
+    <wm6Version>
+        <name>WM6.5.x</name>
+        <jdk>1.6</jdk>
+    </wm6Version>
+</polarion-integration-config>

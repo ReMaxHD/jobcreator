@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>true</createMainJob>
+
+    <createIntegrationTestHsqlJob>true</createIntegrationTestHsqlJob>
+    <createIntegrationTestOracleJob>true</createIntegrationTestOracleJob>
+    <createIntegrationTestSqlJob>false</createIntegrationTestSqlJob>
+    <createSonarJob>true</createSonarJob>
+    
+    <createSystemTestJobs>true</createSystemTestJobs>
+	<createCleanupJob>true</createCleanupJob>
+	<!--Project Display Name (whitespaces between dash and words)-->
+    <projectName>WM6 - Template</projectName>
+	<!--Parentview (Tabname)-->
+    <parentView>00 - SCDC/view/Workbranches</parentView>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>02</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Faxe</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>faxe</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>FaxeTestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>faxe</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>03</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Techlab</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>techlab</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>TechlabTestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>techlab</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>04</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Autostore</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>autostorejumpstart</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>AutoStoreJumpstart-DevelopmentConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>autostore</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>05</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>WHP</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>whp</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>WhpDevelopmentConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>whp</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>06</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>TrainingWHP</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>trainingwhp</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>trainingwhp</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>WhpDevelopmentConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DATALOADER_POM_PATH%</key>
+                <value>/wm6-trainingwhp-project/wm6-trainingwhp-exercise/pom.xml</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>07</moduleNumber>
+        <templateConfig>-dataloader-spec -configureplant -startserver -deployapp -run-st -undeployapp -stopserver</templateConfig>
+        <moduleSequenceTemplate>tmpl-st-sequence-7phases</moduleSequenceTemplate>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Cranebox</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>cranebox</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>cranebox</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>Cranebox-TestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DATALOADER_POM_PATH%</key>
+                <value>/wm6-cranebox-project/wm6-cranebox-dataloader/pom.xml</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>08</moduleNumber>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>CarryPick</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>carrypickjumpstart</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>jumpstart/CarryPickJumpstart-TestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>carrypick</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>09</moduleNumber>
+        <moduleConfigJcomEar>true</moduleConfigJcomEar>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>SmartCarrier</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>smartcarrierjumpstart</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>SmartCarrierJumpstartTestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>smartcarrier</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Each individual <module>..</module> can be deleted if not wanted-->
+    <module>
+        <moduleNumber>11</moduleNumber>
+        <moduleConfigJcomEar>true</moduleConfigJcomEar>
+        <templatePrefix>tmpl-st-wl-win</templatePrefix>
+        <moduleParameterMap>
+            <entry>
+                <key>%MODULE_NAME%</key>
+                <value>Cyclone</value>
+            </entry>
+            <entry>
+                <key>%MODULE_NAME_LOWERCASE%</key>
+                <value>cyclonecarrierjumpstart</value>
+            </entry>
+            <entry>
+                <key>%MODULE_DATALOADER_CONFIG%</key>
+                <value>CycloneCarrierJumpstartTestConfiguration.xml</value>
+            </entry>
+            <entry>
+                <key>%DOMAIN_NAME%</key>
+                <value>cyclonecarrierjumpstart</value>
+            </entry>
+        </moduleParameterMap>
+    </module>
+    <!--Parameters-->
+	<parameterMap>
+		<!--Like display name but without whitespaces only "_" -->
+        <entry>
+		    <key>%LIST_NAME%</key>
+            <value>WM6_-_Template</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>SCHR7S-SDC044</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almscdc.swisslog.com/repo/SWPD/Development/WM6/branches/workbranches/wildfly_10/wildfly_10_merge_09_09_16</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>raphael.gloor@swisslog.com patrik.jetzer@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS_ADMIN%</key>
+            <value>raphael.gloor@swisslog.com</value>
+        </entry>
+        <!--Must be added afterwards under http://ci.swisslog.com/jenkins/configure -->
+        <entry>
+            <key>%LOCK%</key>
+            <value>WM6 Template</value>
+        </entry>
+        <!--Most likely already exists should be servername check http://ci.swisslog.com/jenkins/configure -->
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>SCHR7S-SDC044 Weblogic</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH_NAME%</key>
+            <value>Template</value>
+        </entry>
+        <!--D:/jenkins/workspace/%LIST_NAME%_-_01_System_Test_Build-->
+        <entry>
+            <key>%ST_BUILD_LOCATION%</key>
+            <value>D:/jenkins/workspace/WM6_-_Template_-_01_System_Test_Build</value>
+        </entry>
+        <entry>
+            <key>%JDK_VERSION%</key>
+            <value>Java 1.8.0_91 Win</value>
+        </entry>
+        <entry>
+            <key>%M2_REPO%</key>
+            <value>C:\Users\scdcadmin\.m2\repository</value>
+        </entry>
+        <entry>
+            <key>%JACOCO_ST_DIR%</key>
+            <value>D:/jacoco-st/</value>
+        </entry>
+
+    </parameterMap>
+</inputparameter>

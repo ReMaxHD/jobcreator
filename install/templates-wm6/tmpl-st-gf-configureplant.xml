@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <displayName>%DISPLAY_NAME%</displayName>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>30</daysToKeep>
+    <numToKeep>100</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>%SLAVE%</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>copy /Y &quot;%ST_BUILD_LOCATION%\wm6-%MODULE_NAME_LOWERCASE%-project\wm6-%MODULE_NAME_LOWERCASE%-data\src\main\resources\import\two_cranes\Plant.xlsx&quot; &quot;%ST_BUILD_LOCATION%\wm6-%MODULE_NAME_LOWERCASE%-project\wm6-%MODULE_NAME_LOWERCASE%-data\src\main\resources\import\Plant.xlsx&quot;
+</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.Maven>
+      <targets>clean install -f &quot;%ST_BUILD_LOCATION%\wm6-%MODULE_NAME_LOWERCASE%-project\wm6-%MODULE_NAME_LOWERCASE%-config-tool\pom.xml&quot; -Psystem_test,configure_plant -Dcom.swisslog.plant_config.path=&quot;%ST_BUILD_LOCATION%\wm6-%MODULE_NAME_LOWERCASE%-project\wm6-%MODULE_NAME_LOWERCASE%-data\src\main\resources&quot;</targets>
+      <mavenName>(Default)</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.12">
+      <recipients>%MAIL_RECIPIENTS_ADMIN%</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.7"/>
+  </publishers>
+  <buildWrappers/>
+</project>

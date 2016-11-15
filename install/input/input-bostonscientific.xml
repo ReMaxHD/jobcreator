@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+	<abortOnError>false</abortOnError>
+
+	<createMainJob>true</createMainJob>
+	<createSonarJob>true</createSonarJob>
+	<createWhitesourceJob>true</createWhitesourceJob>
+
+	<createSystemTestJobs>true</createSystemTestJobs>
+
+	<projectName>Boston Scientific</projectName>
+	<parentView>08 - Benelux</parentView>
+
+	<parameterMap>
+		<entry>
+			<key>%PROJECT_NAME%</key>
+			<value>Boston Scientific</value>
+		</entry>
+		<entry>
+			<key>%LIST_NAME%</key>
+			<value>Boston Scientific</value>
+		</entry>
+		<entry>
+			<key>%SLAVE%</key>
+			<value>Slave03</value>
+		</entry>
+		<entry>
+			<key>%SVN_URL%</key>
+			<value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Boston Scientific/kerkrade - b sc autostore/trunk/SR Installation/05-Sources/01-WM6/wm6-bostonscientific-project</value>
+		</entry>
+		<entry>
+			<key>%SVN_URL_ST%</key>
+			<value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Boston Scientific/kerkrade - b sc autostore/trunk/SR Installation/05-Sources/01-WM6/wm6-bostonscientific-project/wm6-bostonscientific-systemtest/</value>
+		</entry>
+		<entry>
+			<key>%MAIL_RECIPIENTS%</key>
+			<value>olivier.auer@swisslog.com</value>
+		</entry>
+		<entry>
+			<key>%ADMIN_MAIL_RECIPIENTS%</key>
+			<value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+		</entry>
+		<entry>
+			<key>%LOCK%</key>
+			<value>Boston Scientific Build</value>
+		</entry>
+		<entry>
+			<key>%LOCK_ST%</key>
+			<value>Slave03 System Test</value>
+		</entry>
+		<entry>
+			<key>%JDK%</key>
+			<value>1.7</value>
+		</entry>
+		<entry>
+			<key>%MAIN_MVN_TARGETS%</key>
+			<value>clean install</value>
+		</entry>
+		<entry>
+			<key>%SONAR_MVN_TARGETS%</key>
+			<value>org.codehaus.mojo:sonar-maven-plugin:LATEST:sonar -PallWithSurefire</value>
+		</entry>
+		<entry>
+			<key>%SONAR_MVN_POM%</key>
+			<value>D:/jenkins/workspace/Boston Scientific - 01 System Test Build/pom.xml</value>
+		</entry>
+		<entry>
+			<key>%SONAR_MVN_PROPERTIES%</key>
+			<value>sonar.forceAnalysis=true
+sonar.branch=BostonScientific
+sonar.host.url=http://172.31.49.12:8088/sonar
+sonar.jdbc.url=jdbc:postgresql://172.31.49.12:5432/sonar
+sonar.jdbc.driver=org.postgresql.Driver
+sonar.jacoco.itReportPath=D:/jacoco/bostonscientific/jacoco-st.exec</value>
+		</entry>
+		<entry>
+			<key>%SONAR_BRANCH%</key>
+			<value>BostonScientific</value>
+		</entry>
+		<entry>
+			<key>%SONAR_VIOLATION_MAIL%</key>
+			<value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-bostonscientific-root:BostonScientific -m "olivier.auer@swisslog.com"</value>
+		</entry>
+		<entry>
+			<key>%WHITESOURCE_MVN_TARGETS%</key>
+			<value>clean install com.swisslog.wm6.plugins:wm6-parentversion-plugin:version -N&#xd;</value>
+		</entry>
+		<entry>
+			<key>%JACOCO_SHELL_COMMAND%</key>
+			<value>if exist D:\jacoco-st\bostonscientific\jacoco-st.exec del D:\jacoco-st\bostonscientific\jacoco-st.exec</value>
+		</entry>
+		<entry>
+			<key>%DATALOAD_MVN_TARGETS%</key>
+			<value>clean install -f &quot;D:\jenkins\workspace\Boston Scientific - Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test</value>
+		</entry>
+		<entry>
+			<key>%START_SERVER_SHELL_COMMAND%</key>
+			<value># https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+# avoid having jenkins kill glassfish
+export BUILD_ID=dontKillMe
+
+set JAVA_OPTIONS=%JAVA_OPTIONS% -javaagent:C:/Users/scdcadmin/.m2/repository/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/bostonscientific/jacoco-st.exec
+
+start %MW_HOME%/wlserver/server/bin/setWLSEnv.bat
+cd %MW_HOME%/wlserver/server/lib/
+mvn install
+mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml
+
+# start server
+mvn com.oracle.weblogic:wls-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/bostonscientific -DmiddlewareHome=%MW_HOME%</value>
+		</entry>
+		<entry>
+			<key>%DEPLOY_SHELL_COMMAND%</key>
+			<value>cd %MW_HOME%/wlserver/server/lib/
+
+# deploy app
+mvn com.oracle.weblogic:wls-maven-plugin:deploy -Dsource=D:/jenkins/workspace/Boston Scientific - Build/wm6-bostonscientific-war/target/wm6-bostonscientific-war.war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%
+			</value>
+		</entry>
+		<entry>
+			<key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+			<value>clean install -Pweblogicsystemtest</value>
+		</entry>
+		<entry>
+			<key>%UNDEPLOY_SHELL_COMMAND%</key>
+			<value>cd %MW_HOME%/wlserver/server/lib/
+
+# undeploy app
+mvn com.oracle.weblogic:wls-maven-plugin:undeploy -Dname=wm6-bostonscientific-war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+		</entry>
+		<entry>
+			<key>%STOP_SERVER_SHELL_COMMAND%</key>
+			<value>cd %MW_HOME%/wlserver/server/lib/
+
+# stop server
+mvn com.oracle.weblogic:wls-maven-plugin:stop-server -DdomainHome=%MW_HOME%/user_projects/domains/bostonscientific -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%
+			</value>
+		</entry>
+	</parameterMap>
+</inputparameter>

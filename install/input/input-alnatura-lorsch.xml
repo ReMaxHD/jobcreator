@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>true</createMainJob>
+    <createSonarJob>true</createSonarJob>
+    <createWhitesourceJob>true</createWhitesourceJob>
+
+    <createSystemTestJobs>false</createSystemTestJobs>
+
+    <projectName>Alnatura - Lorsch</projectName>
+    <parentView>05 - Germany</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Alnatura - Lorsch</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Alnatura - Lorsch</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://librarymanagement.swisslog.com/repo/SoftwareRealization/Alnatura/lorsch deutschland - kvl/trunk/SR Installation/05-Sources/01-WM6/wm6-alnatura-project</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>Hamid.Pezeshgi@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com marc.lenicka@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Alnatura - Lorsch Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave02 System Test (Weblogic)</value>
+        </entry>
+        <entry>
+            <key>%JDK_NAME%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>clean install -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%JACOCO-ST_PATH%</key>
+            <value>D:/jacoco/alnaturalorsch/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>AlnaturaLorsch</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-alnatura-root:AlnaturaLorsch -m "Hamid.Pezeshgi@swisslog.com"</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

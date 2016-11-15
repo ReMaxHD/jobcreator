@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+
+    <abortOnError>false</abortOnError>
+
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+    <createWhitesourceJob>false</createWhitesourceJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+
+    <projectName>Riwisa</projectName>
+    <parentView>01 - Switzerland</parentView>
+
+    <parameterMap>
+        <entry>
+            <key>%PROJECT_NAME%</key>
+            <value>Riwisa</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Riwisa</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave01</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almch.swisslog.com/repo/Projects/Riwisa/P002816_Riwisa_RetrofitHRL/prj/trunk/05-Sources/01-WM-S/riwisa</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almch.swisslog.com/repo/Projects/Riwisa/P002816_Riwisa_RetrofitHRL/prj/trunk/05-Sources/01-WM-S/riwisa/wm6-riwisa-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>thomas.mauch@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>patrik.jetzer@swisslog.com pedro.oliveira@swisslog.com tim.eick@swisslog.com yves.simmen@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Riwisa Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave01 System Test</value>
+        </entry>
+        <entry>
+            <key>%JDK%</key>
+            <value>1.7</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>org.codehaus.mojo:sonar-maven-plugin:2.6:sonar -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_POM%</key>
+            <value>D:/jenkins/workspace/Riwisa_-_01_System_Test_Build/pom.xml</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_PROPERTIES%</key>
+            <value>sonar.forceAnalysis=true
+                sonar.branch=Riwisa
+                sonar.host.url=http://172.31.49.12:8088/sonar
+                sonar.jdbc.url=jdbc:postgresql://172.31.49.12:5432/sonar
+                sonar.jdbc.driver=org.postgresql.Driver
+                sonar.jacoco.itReportPath=D:/jacoco/riwisa/jacoco-st.exec
+            </value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>Riwisa</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>groovy D:\groovy-2.3.7\sendViolationsMail.py -p com.swisslog.wm6:wm6-riwisa-root:TestProject -m "thomas.mauch@swisslog.com"</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\riwisa\jacoco-st.exec del D:\jacoco-st\riwisa\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_TARGETS%</key>
+            <value>clean install -f &quot;D:\jenkins\workspace\Riwisa_-_01-System_Test_Build\pom.xml&quot; -PloadData,system_test -Dcom.swisslog.environment=ci_system_test
+            </value>
+        </entry>
+        <entry>
+            <key>%START_SERVER_SHELL_COMMAND%</key>
+            <value>REM https://wiki.jenkins-ci.org/display/JENKINS/ProcessTreeKiller
+REM avoid having jenkins kill glassfish
+set BUILD_ID=dontKillMe
+
+set JAVA_OPTIONS=%JAVA_OPTIONS% -javaagent:C:/Users/scdcadmin/.m2/repository/org/jacoco/org.jacoco.agent/0.7.1.201405082137/org.jacoco.agent-0.7.1.201405082137-runtime.jar=destfile=D:/jacoco-st/riwisa/jacoco-st.exec
+
+start %MW_HOME%/wlserver/server/bin/setWLSEnv.bat
+cd %MW_HOME%/wlserver/server/lib/
+call mvn install
+call mvn install:install-file -Dfile=wls-maven-plugin.jar -DpomFile=pom.xml
+
+REM start server
+call mvn com.oracle.weblogic:wls-maven-plugin:start-server -DdomainHome=%MW_HOME%/user_projects/domains/riwisa -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%DEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM deploy app
+call mvn com.oracle.weblogic:wls-maven-plugin:deploy -Dsource=D:/jenkins/workspace/Riwisa_-_01-System_Test_Build/wm6-riwisa-war/target/wm6-riwisa-war.war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%
+</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+            <value>clean install -Pweblogicsystemtest</value>
+        </entry>
+        <entry>
+            <key>%UNDEPLOY_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM undeploy app
+call mvn com.oracle.weblogic:wls-maven-plugin:undeploy -Dname=wm6-riwisa-war -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+        <entry>
+            <key>%STOP_SERVER_SHELL_COMMAND%</key>
+            <value>cd %MW_HOME%/wlserver/server/lib/
+
+REM stop server
+call mvn com.oracle.weblogic:wls-maven-plugin:stop-server -DdomainHome=%MW_HOME%/user_projects/domains/riwisa -Duser=weblogic -Dpassword=welcome1 -DmiddlewareHome=%MW_HOME%</value>
+        </entry>
+    </parameterMap>
+</inputparameter>

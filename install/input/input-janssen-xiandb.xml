@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inputparameter>
+    
+    <abortOnError>false</abortOnError>
+    
+    <createMainJob>false</createMainJob>
+    <createSonarJob>false</createSonarJob>
+
+    <createSystemTestJobs>true</createSystemTestJobs>
+   
+    <projectName>Janssen - Xi'an</projectName>
+    <parentView>03 - Malaysia</parentView>
+    <templatePrefix>tmpl-st-wl</templatePrefix>
+       
+    <parameterMap>
+        <entry>
+            <key>%JDK%</key>
+            <value>Java 1.7 Win</value>
+        </entry>
+        <entry>
+            <key>%LIST_NAME%</key>
+            <value>Janssen - Xi'an</value>
+        </entry>
+        <entry>
+            <key>%MODULE_NAME_LOWERCASE%</key>
+            <value>xjp</value>
+        </entry>
+        <entry>
+            <key>%SLAVE%</key>
+            <value>Slave02</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL%</key>
+            <value>http://almasia.swisslog.com/repo/Projects/JanssenPharmaXian/P002873.02.03/SW Installation/trunk/05-Source Code/01-WM-S/wm6-xjp-project/</value>
+        </entry>
+        <entry>
+            <key>%SVN_URL_ST%</key>
+            <value>http://almasia.swisslog.com/repo/Projects/JanssenPharmaXian/P002873.02.03/SW Installation/trunk/05-Source Code/01-WM-S/wm6-xjp-project/wm6-xjp-systemtests/</value>
+        </entry>
+        <entry>
+            <key>%MAIL_RECIPIENTS%</key>
+            <value>khunglong.loi@swisslog.com junsheng.low@swisslog.com chuah.tongsin@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%ADMIN_MAIL_RECIPIENTS%</key>
+            <value>marc.lenicka@swisslog.com patrik.jetzer@swisslog.com pedro-oliveira@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%LOCK%</key>
+            <value>Janssen - Xi'an Build</value>
+        </entry>
+        <entry>
+            <key>%LOCK_ST%</key>
+            <value>Slave02 System Test Weblogic</value>
+        </entry>
+        <entry>
+            <key>%MAIN_MVN_TARGETS%</key>
+            <value>clean install</value>
+        </entry>
+        <entry>
+            <key>%SONAR_BRANCH%</key>
+            <value>JanssenXian</value>
+        </entry>
+        <entry>
+            <key>%SONAR_MVN_TARGETS%</key>
+            <value>clean install -PallWithSurefire</value>
+        </entry>
+        <entry>
+            <key>%JACOCO-ST_PATH%</key>
+            <value>D:/jacoco/JanssenXian/jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%SONAR_VIOLATION_MAIL%</key>
+            <value>khunglong.loi@swisslog.com , junsheng.low@swisslog.com, chuah.tongsin@swisslog.com</value>
+        </entry>
+        <entry>
+            <key>%JACOC_SHELL_COMMAND%</key>
+            <value>if exist D:\jacoco-st\JanssenXian\jacoco-st.exec del D:\jacoco-st\JanssenXian\jacoco-st.exec</value>
+        </entry>
+        <entry>
+            <key>%DATALOAD_MVN_TARGETS%</key>
+            <value>install -f &quot;D:\jenkins\workspace\Janssen_-_Xi'an_-_01-System_Test_Build\wm6-xjp-components\wm6-xjp-main\pom.xml&quot; -PloadData -Dcom.swisslog.dataloader.configuration=ColesProductiveConfiguration.xml -Dcom.swisslog.environment=ci_system_test</value>
+        </entry>
+        <entry>
+            <key>%DOMAIN_NAME%</key>
+            <value>xjp</value>
+        </entry>
+        <entry>
+            <key>%ARTIFACT_LOCATION%</key>
+            <value>D:/jenkins/workspace/Janssen_-_Xi'an_-_01-System_Test_Build/wm6-xjp-war/target/wm6-xjp-war.war</value>
+        </entry>
+        <entry>
+            <key>%SYSTEM_TESTS_MVN_TARGETS%</key>
+            <value>clean install -Pweblogicsystemtest</value>
+        </entry>
+    </parameterMap>
+</inputparameter>
